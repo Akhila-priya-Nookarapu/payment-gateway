@@ -1,0 +1,9 @@
+
+setup:
+  - docker-compose build
+start:
+  - docker-compose up -d
+verify:
+  - curl http://localhost:8000/api/v1/test/jobs/status
+shutdown:
+  - docker-compose down

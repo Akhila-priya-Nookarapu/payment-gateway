@@ -1,0 +1,32 @@
+
+version: "3.8"
+services:
+  api:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./api:/app
+    command: node index.js
+    ports:
+      - "8000:8000"
+
+  worker:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./api:/app
+    command: node worker.js
+
+  dashboard:
+    image: nginx:alpine
+    volumes:
+      - ./dashboard:/usr/share/nginx/html
+    ports:
+      - "3000:80"
+
+  checkout:
+    image: nginx:alpine
+    volumes:
+      - ./checkout:/usr/share/nginx/html
+    ports:
+      - "3001:80"
